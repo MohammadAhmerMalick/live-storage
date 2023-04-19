@@ -1,0 +1,22 @@
+{
+  "name": "live-storage",
+  "version": "1.0.0",
+  "description": "Online storage to store data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MohammadAhmerMalick/live-storage.git"
+  },
+  "keywords": [
+    "storage"
+  ],
+  "author": "Mohammad Ahmer Malick",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MohammadAhmerMalick/live-storage/issues"
+  },
+  "homepage": "https://github.com/MohammadAhmerMalick/live-storage#readme"
+}
