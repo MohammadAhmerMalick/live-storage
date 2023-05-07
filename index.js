@@ -9,6 +9,7 @@ app.use(express.urlencoded({ extended: false }))
 
 //Routes
 app.use('/', require('./routes/note'))
+app.use('/admin', require('./routes/admin'))
 
 // listen to port
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`))

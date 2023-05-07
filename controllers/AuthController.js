@@ -2,7 +2,7 @@ const User = require('../models/User')
 
 // login page
 const loginView = (req, res) => {
-  res.render('login', {})
+  res.render('login', { email: '', password: '' })
 }
 
 // register page
