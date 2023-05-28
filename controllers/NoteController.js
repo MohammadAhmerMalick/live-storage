@@ -1,7 +1,7 @@
 const Note = require('../models/Note')
 
 const noteView = (req, res) => {
-  return res.render('note')
+  return res.render('note/note')
 }
 
 const createNote = async (req, res) => {
@@ -11,7 +11,7 @@ const createNote = async (req, res) => {
 
   const newNote = new Note({ title, note })
   await newNote.save()
-  return res.render('note')
+  return res.render('note/note')
 }
 
 module.exports = { noteView, createNote }

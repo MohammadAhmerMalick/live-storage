@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('./layout/head.ejs',{ headTitle : "Login" }) %>
-  <body>
-    <div class="container">
-      <div class="row mt-5">
-        <div class="col-12 mb-3">
-          <h1 class="text-center">Login User</h1>
-        </div>
-        <form method="POST" action="./admin" class="col-12 m-auto" style="max-width: 600px">
-          <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" name="email" value="<%= email %>" class="form-control" />
-          </div>
-          <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" name="password" value="<%= password %>" class="form-control" />
-          </div>
-          <button type="submit" class="btn btn-primary">Login</button>
-        </form>
+
+<head>
+  <%- include('./layout/headContent.ejs',{ headTitle : "Login" }) %>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-12 mb-3">
+        <h1 class="text-center">Login User</h1>
       </div>
+      <form method="POST" action="./admin" class="col-12 m-auto" style="max-width: 600px">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" name="email" value="<%= email %>" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" name="password" value="<%= password %>" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

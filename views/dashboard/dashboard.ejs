@@ -1,75 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('../layout/head.ejs',{headTitle:"Notes"}) %>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/themes/prism-okaidia.min.css"
-    integrity="sha512-5HvW0a7ihK3ro2KhwEksDHXgIezsTeZybZDIn8d8Y015Ny+t7QWSIjnlCTjFzlK7Klb604HLGjsNqU/i5mJLjQ=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
-  <style>
-    body {
-      background-color: gray;
-    }
-  </style>
-  <body>
-    <div class="container">
-      <div class="row">
-        <% notes.forEach(data => { %>
-        <button
-          class="btn btn-dark col-8 mb-1"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#<%= data._id%>"
-          aria-expanded="false"
-          aria-controls="<%= data._id%>"
-        >
+<%- include('./head') %>
+<% const languageList = [ 'HTML', 'CSS', 'SCSS', 'TSX', 'JavaScript' ] %>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <% notes.forEach(data => { %>
+      <div class="col-8">
+        <button type="button" class="btn btn-dark w-100 mb-1" aria-expanded="false" data-bs-toggle="collapse" data-bs-target="#<%= data._id%>" aria-controls="<%= data._id%>">
           <%= data.title%>
         </button>
-
-        <div class="dropdown col-4">
-          <button
-            class="btn btn-dark dropdown-toggle w-100"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Dropdown button
-          </button>
-          <ul id="languageDropdown" class="dropdown-menu dropdown-menu-dark">
-            <li onclick="selectLanguage(this,'<%= data._id%>')">HTML</li>
-            <li onclick="selectLanguage(this,'<%= data._id%>')">CSS</li>
-            <li onclick="selectLanguage(this,'<%= data._id%>')">SCSS</li>
-            <li onclick="selectLanguage(this,'<%= data._id%>')">TSX</li>
-            <li onclick="selectLanguage(this,'<%= data._id%>')">Javascript</li>
-          </ul>
-        </div>
-        <div class="collapse col-12 mb-2" id="<%= data._id%>">
-          <pre
-            class="card card-body"
-          ><code id="code-<%= data._id%>" class="language-Javascript"><%= data.note%></code></pre>
-        </div>
-        <% }); %>
       </div>
+
+      <div class="dropdown col-4">
+        <button data-id="<%- data._id%>" type="button" aria-expanded="false" data-bs-toggle="dropdown" class="btn btn-dark dropdown-toggle w-100">
+          Select Language
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark">
+          <% languageList.forEach (lang=>{ %>
+          <li class="px-3 py-1" role="button" onclick="selectLanguage(this,'<%= data._id%>',`<%= data.note%>`)" data-lang-name="<%- lang.toLowerCase()%>"><%- lang%></li>
+          <% } )%>
+        </ul>
+      </div>
+      <div class="collapse col-12 mb-2" id="<%= data._id%>">
+        <pre class="card card-body"><code id="code-<%= data._id%>" class="language-Javascript"><%= data.note%></code></pre>
+      </div>
+      <% }); %>
     </div>
-  </body>
+  </div>
 
-  <script>
-    const selectLanguage = (e, id) => {
-      console.log({ e })
-      console.log({ id })
+  <%- include('./foot') %>
+</body>
 
-      const language = e.textContent
-      const className = 'language' + '-' + language
-
-      const codeContainre = document.getElementById(`code-${id}`)
-      codeContainre.className = className
-      console.log({ codeContainre })
-    }
-  </script>
-
-  <script src="
-  https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js
-  "></script>
 </html>

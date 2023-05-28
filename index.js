@@ -8,6 +8,7 @@ app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 
 //Routes
+app.use(express.static(__dirname + '/public'))
 app.use('/', require('./routes/note'))
 app.use('/admin', require('./routes/admin'))
 

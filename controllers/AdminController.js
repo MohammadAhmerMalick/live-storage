@@ -11,9 +11,6 @@ const getAdminPanel = async (req, res) => {
   if (user?.isActive) {
     const notes = await Note.find()
 
-    notes.forEach((element) => {
-      console.log({ element: element.title })
-    })
     return res.render('dashboard/dashboard', { notes })
   }
 
