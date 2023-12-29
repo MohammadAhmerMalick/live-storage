@@ -2,27 +2,23 @@
 <html lang="en">
   <head>
     <%- include('../layout/headContent.ejs', { headTitle : "Note" }) %>
-
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        /* background-color: gray; */
-      }
-      body * {
-        opacity: 0;
-        /* background-color: gray;
-        border: 1px solid darkgray;
-        outline: 1px solid darkgray; */
-      }
-    </style>
+    <link rel="stylesheet" href="./css/note.css" />
   </head>
 
   <body>
     <form action="/" method="POST">
-      <input type="text" name="title" id="title" />
-      <textarea name="note"></textarea>
-      <button type="submit">save</button>
+      <h1 class="heading">Save Data</h1>
+
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control" id="title" placeholder="Title" />
+      </div>
+      <div class="mb-3">
+        <label for="note" class="form-label">Note</label>
+        <textarea class="form-control" id="note" rows="3" placeholder="Text/Code"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary">save</button>
     </form>
   </body>
   <script>

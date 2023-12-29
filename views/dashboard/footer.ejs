@@ -1,0 +1,20 @@
+<footer>
+  <%- include('../layout/footerContent.ejs') %>
+  <script src="./script/prism.js"></script>
+
+  <script>
+    const selectLanguage = (e, id, note) => {
+      const language = e.getAttribute('data-lang-name')
+
+      const className = 'language' + '-' + language
+
+      const codeContainre = document.getElementById(`code-${id}`)
+      codeContainre.className = className
+
+      const html_with_highlight = Prism.highlight(note, Prism.languages[language], language)
+
+      const coadContainer = document.getElementById(`code-${id}`)
+      codeContainre.innerHTML = html_with_highlight
+    }
+  </script>
+</footer>
