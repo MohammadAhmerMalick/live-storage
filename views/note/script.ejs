@@ -1,0 +1,15 @@
+<script>
+  // prevent resubmitting the form on reload
+  if (window.history.replaceState) {
+    window.history.replaceState(null, null, window.location.href)
+  }
+
+  document.getElementById('title').focus() // shift focus to title field on page load
+</script>
+
+<% try { %>
+<script>
+  // show success/error message
+  toaster.show('<%= reqStatus %>', '<%= reqMessage %>', '<%= reqStatus %>')
+</script>
+<% } catch (error) {} %>
