@@ -1,0 +1,31 @@
+<script>
+  class Toaster {
+    setTitle = (title) => {
+      document.querySelector('#toaster .title').innerText = title
+    }
+    setPoint = (point) => {
+      document.querySelector('#toaster .point').innerText = point
+    }
+    setMessage = (message) => {
+      document.querySelector('#toaster .toast-body').innerText = message
+    }
+    setNature = (nature) => {
+      document.querySelector('#toaster .nature').classList.add(nature)
+      setTimeout(() => {
+        document.querySelector('#toaster .nature').classList.remove(nature)
+      }, 6000)
+    }
+
+    show = (title = 'Information', message = '', nature = 'primary', point = '') => {
+      const natureColor = nature === "error" ? "danger" : nature
+
+      this.setTitle(title)
+      this.setPoint(point)
+      this.setMessage(message)
+      this.setNature(`bg-${natureColor}`)
+      bootstrap.Toast.getOrCreateInstance(toast).show()
+    }
+  }
+
+  const toaster = new Toaster()
+</script>
