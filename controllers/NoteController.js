@@ -1,4 +1,5 @@
 const Note = require('../models/Note')
+const uploadFileToBucket = require('../models/UploadFile')
 
 const noteView = (req, res) => {
   return res.render('note/note')
@@ -9,7 +10,17 @@ const createNote = async (req, res) => {
 
   if (!note) return res.render('note/note', { reqStatus: 'error', reqMessage: 'Note is required' })
 
-  const newNote = new Note({ title, note })
+  let fileLinks = []
+
+  // handle file
+  const file = req.file
+  if (file) {
+    const uploadRes = await uploadFileToBucket(file.filename, file.path)
+    if (uploadRes.error) return res.json({ error: uploadRes.error })
+    fileLinks = [uploadRes.url]
+  }
+
+  const newNote = new Note({ title, note, fileLinks })
   await newNote.save()
   return res.render('note/note', { reqStatus: 'success', reqMessage: 'Note Saved' })
 }

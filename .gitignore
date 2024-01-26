@@ -1,3 +1,5 @@
 node_modules
 
 .env
+
+cloud-storage--firebase-adminsdk.json

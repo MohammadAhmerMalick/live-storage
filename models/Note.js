@@ -11,6 +11,9 @@ const NoteSchema = new mongoos.Schema({
     type: Date,
     default: Date.now,
   },
+  fileLinks: {
+    type: [String],
+  },
 })
 
 const Note = mongoos.model('Note', NoteSchema)
