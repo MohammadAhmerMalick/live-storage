@@ -9,7 +9,7 @@ const getAdminPanel = async (req, res) => {
   const user = await User.findOne({ email })
 
   if (user?.isActive) {
-    const notes = await Note.find()
+    const notes = await Note.find({ $or: [{ isDeleted: false }, { isDeleted: null }] })
 
     return res.render('dashboard/dashboard', { notes })
   }

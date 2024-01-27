@@ -13,7 +13,7 @@
         </button>
       </div>
 
-      <div class="dropdown col-4">
+      <div class="dropdown col-3">
         <button data-id="<%- data._id%>" type="button" aria-expanded="false" data-bs-toggle="dropdown" class="btn btn-dark dropdown-toggle w-100">
           Select Language
         </button>
@@ -22,6 +22,11 @@
           <li class="px-3 py-1" role="button" onclick="selectLanguage(this,'<%= data._id%>',`<%= data.note%>`)" data-lang-name="<%- lang.toLowerCase()%>"><%- lang%></li>
           <% } )%>
         </ul>
+      </div>
+      <div class="dropdown col-1">
+        <button type="button" class="btn btn-dark w-100">
+          <img src="icons/BsTrashFill.svg" alt="Delete">
+        </button>
       </div>
       <div class="collapse col-12 mb-2" id="<%= data._id%>">
         <pre class="card card-body"><code id="code-<%= data._id%>" class="language-Javascript"><%= data.note%></code></pre>

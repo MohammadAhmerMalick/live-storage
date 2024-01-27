@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb')
 const Note = require('../models/Note')
 const uploadFileToBucket = require('../models/UploadFile')
 
@@ -25,4 +26,21 @@ const createNote = async (req, res) => {
   return res.render('note/note', { reqStatus: 'success', reqMessage: 'Note Saved' })
 }
 
-module.exports = { noteView, createNote }
+const updateNote = async (req, res) => {
+  const noteId = req.param('noteId').toString()
+
+  try {
+    const update = await Note.updateOne({ _id: new ObjectId(noteId) }, { $set: { isDeleted: true } })
+
+    if (update.acknowledged) {
+      res.statusMessage = 'success'
+      return res.json({ message: 'Successfully updated' })
+    }
+    throw ''
+  } catch (error) {
+    res.statusMessage = 'error'
+    return res.json({ message: 'Unable to updated' })
+  }
+}
+
+module.exports = { noteView, createNote, updateNote }

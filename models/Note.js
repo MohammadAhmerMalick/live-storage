@@ -14,6 +14,10 @@ const NoteSchema = new mongoos.Schema({
   fileLinks: {
     type: [String],
   },
+  isDeleted: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const Note = mongoos.model('Note', NoteSchema)
