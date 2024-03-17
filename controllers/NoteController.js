@@ -26,15 +26,15 @@ const createNote = async (req, res) => {
   return res.render('note/note', { reqStatus: 'success', reqMessage: 'Note Saved' })
 }
 
-const updateNote = async (req, res) => {
-  const noteId = req.param('noteId').toString()
+const moveNoteToTrash = async (req, res) => {
+  const { noteId } = req.params
 
   try {
     const update = await Note.updateOne({ _id: new ObjectId(noteId) }, { $set: { isDeleted: true } })
 
     if (update.acknowledged) {
       res.statusMessage = 'success'
-      return res.json({ message: 'Successfully updated' })
+      return res.json({ message: 'Moved to trash' })
     }
     throw ''
   } catch (error) {
@@ -43,4 +43,4 @@ const updateNote = async (req, res) => {
   }
 }
 
-module.exports = { noteView, createNote, updateNote }
+module.exports = { noteView, createNote, moveNoteToTrash }

@@ -1,0 +1,55 @@
+<%- include('../layout/pageEndScript.ejs') %>
+<%- include('../common/toaster/toaster') %>
+
+<!-- Select Language -->
+<script>
+  const selectLanguage = (e, id, note) => {
+    const language = e.getAttribute('data-lang-name')
+
+    const className = 'language' + '-' + language
+
+    const codeContainre = document.getElementById(`code-${id}`)
+    codeContainre.className = className
+
+    const html_with_highlight = Prism.highlight(note, Prism.languages[language], language)
+
+    const coadContainer = document.getElementById(`code-${id}`)
+    codeContainre.innerHTML = html_with_highlight
+  }
+</script>
+
+<!-- Move Note To Trash Call -->
+<script>
+  const moveNoteToTrash = async (id, onSuccess) => {
+    try {
+      let res = await fetch(`/delete/${id}`, {
+        method: 'PATCH',
+      })
+      if (res.statusText !== 'success') throw await res.json()
+
+      const {
+        message
+      } = await res.json()
+
+      toaster.show('Success', message, 'success')
+      onSuccess()
+    } catch (error) {
+
+      toaster.show('Success', error?.message || "Something went wrong", 'error')
+    }
+  }
+
+  // <!-- Move Note To Trash action -->
+  const deleteBtm = document.querySelectorAll('.container .delete')
+
+  deleteBtm.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-id')
+console.log({id})
+      moveNoteToTrash(id, () => {
+        const row = document.getElementById(`row-${id}`)
+        row.classList.add('d-none')
+      })
+    })
+  })
+</script>
