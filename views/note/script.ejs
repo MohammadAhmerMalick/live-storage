@@ -7,6 +7,19 @@
   document.getElementById('title').focus() // shift focus to title field on page load
 </script>
 
+
+<!-- file size limit -->
+<script>
+  const uploadField = document.getElementById("file");
+
+  uploadField.onchange = function() {
+    if (this.files[0].size > 10000000) { // limit ot 10MB
+      toaster.show('Error', 'File size should be less than 10MB!', 'error')
+      this.value = "";
+    }
+  }
+</script>
+
 <% try { %>
 <script>
   // show success/error message

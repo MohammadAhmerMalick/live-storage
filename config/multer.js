@@ -16,5 +16,8 @@ const storageConfig = () => {
     },
   }))
 }
-const upload = multer({ storage: storageConfig() })
+const upload = multer({
+  storage: storageConfig(),
+  //  limits: { fileSize: 100 } // limit to 100 bites
+})
 module.exports = upload
