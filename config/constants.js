@@ -1,0 +1,3 @@
+const UPLOAD_FILE_SIZE = 10000000
+
+module.exports = UPLOAD_FILE_SIZE

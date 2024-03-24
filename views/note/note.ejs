@@ -13,11 +13,11 @@
           <h1 class="text-center">Save Data</h1>
           <div class="mb-4">
             <label for="title" class="form-label">Title</label>
-            <input name="title" type="text" class="form-control" id="title" placeholder="Title" />
+            <input name="title" value='<%= typeof title != "undefined" ? title : "" %>' type=" text" class="form-control" id="title" placeholder="Title" />
           </div>
           <div class="mb-4">
             <label for="note" class="form-label">Note</label>
-            <textarea name="note" class="form-control" id="note" rows="3" placeholder="Text/Code"></textarea>
+            <textarea name="note" class="form-control" id="note" rows="3" placeholder="Text/Code"><%= typeof note != "undefined" ? note : "" %></textarea>
           </div>
           <div class="mb-3">
             <label for="file" class="form-label">File</label>

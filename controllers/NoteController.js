@@ -1,15 +1,14 @@
 const { ObjectId } = require('mongodb')
 const Note = require('../models/Note')
+const routeList = require('../routes/routesList')
 const uploadFileToBucket = require('../models/UploadFile')
 
-const noteView = (req, res) => {
-  return res.render('note/note')
-}
+const noteView = (req, res) => res.render(routeList['/'])
 
 const createNote = async (req, res) => {
   const { title, note } = req.body
 
-  if (!note) return res.render('note/note', { reqStatus: 'error', reqMessage: 'Note is required' })
+  if (!note) return res.render(routeList['/'], { reqStatus: 'error', reqMessage: 'Note is required' })
 
   let fileLinks = []
 

@@ -1,5 +1,6 @@
 const fs = require('fs')
 const multer = require('multer')
+const UPLOAD_FILE_SIZE = require('./constants')
 
 const uploadDir = 'uploads'
 
@@ -18,6 +19,6 @@ const storageConfig = () => {
 }
 const upload = multer({
   storage: storageConfig(),
-  //  limits: { fileSize: 100 } // limit to 100 bites
+  limits: { fileSize: UPLOAD_FILE_SIZE }, // limit to 100 bites
 })
 module.exports = upload
